@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chemistree ASG 2025</title>
+  <style>
+    :root{
+      --max-width: 1000px;
+      --tooltip-bg: #000;
+      --tooltip-color: #fff;
+      --tooltip-radius: 6px;
+      --tooltip-padding: 6px 8px;
+      --transition: 150ms ease;
+    }
+    body{
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      margin: 20px;
+      display: flex;
+      justify-content: center;
+      background: black;
+    }
+    .wrap{
+      width: 100%;
+      max-width: var(--max-width);
+    }
+    h1{
+      text-align: center;
+      font-size: 2.5rem;   /* doppelt so groß */
+      color: gold;         /* goldene Schrift */
+      margin: 0 0 12px 0;
+    }
+    .image-container{
+      position: relative;
+      width: 100%;
+      /* keep image aspect ratio by letting image define container height */
+    }
+    .image-container img{
+      display: block;
+      width: 100%;
+      height: auto;
+      user-select: none;
+    }
+
+    /* invisible hotspots */
+    .hotspot{
+      position: absolute;
+      cursor: pointer;
+      /* invisible but still receive hover */
+      background: transparent;
+      transition: box-shadow var(--transition);
+    }
+
+    /* Tooltip / layover shown on hover */
+    .tooltip {
+      position: absolute;
+      pointer-events: none;
+      transform: translate(-50%, -110%) scale(0.95);
+      transform-origin: bottom center;
+      opacity: 0;
+      transition: opacity var(--transition), transform var(--transition);
+      white-space: nowrap;
+      z-index: 999;
+      display: inline-block;
+      font-weight: 600;
+      font-size: 1.8rem;
+      color: gold;
+      background: var(--tooltip-bg);
+      padding: var(--tooltip-padding);
+      border-radius: var(--tooltip-radius);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    }
+
+    /* show tooltip when parent hotspot is hovered or focused */
+    .hotspot:focus .tooltip,
+    .hotspot:hover .tooltip {
+      opacity: 1;
+      transform: translate(-50%, -120%) scale(1);
+    }
+
+    /* small visible indicator on focus for accessibility */
+    .hotspot:focus { outline: 2px dashed rgba(0,0,0,0.25); outline-offset: 2px; }
+
+    /* make tooltips adjust on small screens */
+    @media (max-width: 420px){
+      .tooltip { font-size: 0.85rem; padding: 5px 6px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Finde die Namen heraus!</h1>
+
+    <!-- Container: ersetzt "image.jpg" durch deinen Bilddateinamen falls nötig -->
+    <div class="image-container" aria-label="Chemistree ASG 2025">
+      <img src="image.jpg" alt="Chemistree ASG 2025" />
+
+      <!-- Hotspots: left/top/width/height in Prozent (relativ zur Bildbreite und -höhe) -->
+      <!-- Format: data-label zeigt die Ziffer, die beim Hover erscheinen soll -->
+      <!-- Diese Koordinaten wurden automatisch bestimmt (18 Flächen). -->
+
+      <!-- Label 2 -->
+      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="2"
+         style="left:70.000%; top:0.352%; width:14.375%; height:9.499%;">
+        <span class="tooltip">Y.Ok (nicht mehr am ASG)</span>
+      </a>
+
+      <!-- Label 1 -->
+      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="1"
+         style="left:11.875%; top:0.528%; width:16.125%; height:10.026%;">
+        <span class="tooltip">S.Wendt</span>
+      </a>
+
+      <!-- Label 5 -->
+      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="5"
+         style="left:80.625%; top:18.118%; width:13.125%; height:10.026%;">
+        <span class="tooltip">H.Bytomski</span>
+      </a>
+
+      <!-- Label 3 -->
+      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="3"
+         style="left:14.000%; top:23.571%; width:15.375%; height:10.202%;">
+        <span class="tooltip">F.Hüttinger</span>
+      </a>
+
+      <!-- Label 4 -->
+      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="4"
+         style="left:36.125%; top:25.682%; width:6.500%; height:4.925%;">
+        <span class="tooltip">K.Ohlrogge</span>
+      </a>
+
+      <!-- Label 8 -->
+      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="8"
+         style="left:56.500%; top:31.135%; width:6.625%; height:5.101%;">
+        <span class="tooltip">A.Schwabe (nicht mehr am ASG)</span>
+      </a>
+
+      <!-- Label 9 -->
+      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="9"
+         style="left:74.750%; top:31.750%; width:13.750%; height:9.323%;">
+        <span class="tooltip">D.Kostelnik</span>
+      </a>
+
+      <!-- Label 7 -->
+      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="7"
+         style="left:36.250%; top:36.500%; width:7.125%; height:5.629%;">
+        <span class="tooltip">S.Kähler-Lormann</span>
+      </a>
+
+      <!-- Label 6 -->
+      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="6"
+         style="left:4.625%; top:38.347%; width:14.750%; height:8.971%;">
+        <span class="tooltip">P.Martin</span>
+      </a>
+
+      <!-- Label 10 -->
+      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="10"
+         style="left:70.500%; top:41.953%; width:6.125%; height:5.013%;">
+        <span class="tooltip">M.Grassmann (nicht mehr am ASG)</span>
+      </a>
+
+      <!-- Label 11 -->
+      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="11"
+         style="left:85.875%; top:46.262%; width:14.125%; height:9.675%;">
+        <span class="tooltip">R.Walther</span>
+      </a>
+
+      <!-- Label 12 -->
+      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="12"
+         style="left:29.750%; top:52.595%; width:7.000%; height:5.365%;">
+        <span class="tooltip">C.Mohr-Folberth (nicht mehr am ASG)</span>
+      </a>
+
+      <!-- Label 13 -->
+      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="13"
+         style="left:49.750%; top:58.223%; width:6.875%; height:4.837%;">
+        <span class="tooltip">W.Baumüller (nicht mehr am ASG)</span>
+      </a>
+
+      <!-- Label 14 -->
+      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="14"
+         style="left:84.000%; top:58.223%; width:6.500%; height:5.101%;">
+        <span class="tooltip">M.Pöhlmann</span>
+      </a>
+
+      <!-- Label 17 -->
+      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="17"
+         style="left:84.125%; top:68.690%; width:6.375%; height:5.189%;">
+        <span class="tooltip">A.Ricklinkat (nicht mehr am ASG)</span>
+      </a>
+
+      <!-- Label 15 -->
+      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="15"
+         style="left:2.625%; top:68.865%; width:7.000%; height:5.013%;">
+        <span class="tooltip">K.Wanka</span>
+      </a>
+
+      <!-- Label 16 -->
+      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="16"
+         style="left:49.750%; top:68.865%; width:7.375%; height:5.365%;">
+        <span class="tooltip">C.Triebel</span>
+      </a>
+
+      <!-- Label 18 (großes Feld am Bildfuß) -->
+      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="18"
+         style="left:29.625%; top:92.348%; width:42.000%; height:7.652%;">
+        <span class="tooltip">Wir wünschen eine frohe Adventszeit!</span>
+      </a>
+
+    </div>
+  </div>
+</body>
+</html>
