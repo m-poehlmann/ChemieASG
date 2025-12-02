@@ -6,7 +6,7 @@
   <title>Chemistree ASG 2025</title>
 
   <style>
-    :root{
+    :root {
       --max-width: 1000px;
       --tooltip-bg: #000;
       --tooltip-color: #fff;
@@ -15,7 +15,7 @@
       --transition: 150ms ease;
     }
 
-    body{
+    body {
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
       margin: 20px;
       display: flex;
@@ -24,45 +24,49 @@
       overflow-x: hidden;
     }
 
-    .wrap{ width: 100%; max-width: var(--max-width); }
+    .wrap { 
+      width: 100%; 
+      max-width: var(--max-width); 
+    }
 
-    h1{
+    h1 {
       text-align: center;
-      font-size: 2.8rem;
+      font-size: 2.5rem;
       color: gold;
       margin: 0 0 12px 0;
     }
-.headline {
-  text-align: center;       /* Hauptüberschrift bleibt zentriert */
-  margin-bottom: 4px;       /* kleiner Abstand zur Subline */
-}
 
-.headline h1 {
-  font-size: 2.5rem;
-  color: gold;
-  margin: 0;
-}
+    .headline {
+      text-align: center;
+      margin-bottom: 4px;
+    }
 
-.subline {
-  text-align: right;        /* rechtsbündig */
-  font-size: 1rem;          /* ca. 60% kleiner als 2.5rem */
-  color: gold;
-  margin: 0 0 4px 0;        /* minimaler Abstand zum Bild */
-}
+    .headline h1 {
+      font-size: 2.8rem;
+      color: gold;
+      margin: 0;
+    }
 
+    .subline {
+      text-align: right;
+      font-size: 1rem;
+      color: gold;
+      margin: 0 0 4px 0;
+    }
 
-    .image-container{
+    .image-container {
       position: relative;
       width: 100%;
     }
-    .image-container img{
+
+    .image-container img {
       display: block;
       width: 100%;
       height: auto;
       user-select: none;
     }
 
-    .hotspot{
+    .hotspot {
       position: absolute;
       cursor: pointer;
       background: transparent;
@@ -94,65 +98,78 @@
       transform: translate(-50%, -120%) scale(1);
     }
 
-    @media (max-width: 420px){
+    @media (max-width: 420px) {
       .tooltip { font-size: 0.8rem; }
     }
 
-/* ❄️ Glitzer-Schnee-Effekt */
-.snowflake {
-  position: fixed;
-  top: -10px;
-  color: white;
-  font-size: 0.7em;
-  pointer-events: none;
-  animation-name: fall;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite; /* endlos wiederholen */
-  z-index: 9999; /* ganz nach vorne */
-}
-@keyframes fall {
-  0% {
-    transform: translateY(-10vh) rotate(0deg);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(110vh) rotate(360deg);
-    opacity: 0.3;
-  }
-}
+    /* ❄️ Glitzer-Schnee-Effekt */
+    .snowflake {
+      position: fixed;
+      top: -10px;
+      color: white;
+      font-size: 0.7em;
+      pointer-events: none;
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      z-index: 9999;
+    }
 
-</style>
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0.3;
+      }
+    }
+  </style>
 </head>
 
 <body>
-<script>
-  // Anzahl der Schneeflocken
-  const snowCount = 70;
+  <script>
+    // Anzahl der Schneeflocken
+    const snowCount = 100;
 
-  for (let i = 0; i < snowCount; i++) {
-    let snowflake = document.createElement("div");
-    snowflake.classList.add("snowflake");
+    for (let i = 0; i < snowCount; i++) {
+      let snowflake = document.createElement("div");
+      snowflake.classList.add("snowflake");
 
-    // verschiedene Glitzerzeichen ❄ ✦ ✧ ❅
-    const sparkle = ["❄", "✦", "✧", "❅"];
-    snowflake.innerHTML = sparkle[Math.floor(Math.random() * sparkle.length)];
+      // verschiedene Glitzerzeichen ❄ ✦ ✧ ❅
+      const sparkle = ["❄", "✦", "✧", "❅"];
+      snowflake.innerHTML = sparkle[Math.floor(Math.random() * sparkle.length)];
 
-    // zufällige Größe
-    snowflake.style.fontSize = ((Math.random() * 1.4 + 0.6)*0.7) + "rem";
+      // zufällige Größe
+      snowflake.style.fontSize = ((Math.random() * 1.4 + 0.6) * 0.7) + "rem";
 
-    // zufällige horizontale Position
-    snowflake.style.left = Math.random() * 100 + "vw";
+      // zufällige horizontale Position
+      snowflake.style.left = Math.random() * 100 + "vw";
 
-    // unterschiedliche Fallgeschwindigkeiten
-    snowflake.style.animationDuration = (Math.random() * 6 + 4) + "s";
+      // unterschiedliche Fallgeschwindigkeiten
+      snowflake.style.animationDuration = (Math.random() * 6 + 4) + "s";
 
-    // leicht unterschiedliche Verzögerung
-    snowflake.style.animationDelay = Math.random() * 4 + "s";
+      // leicht unterschiedliche Verzögerung
+      snowflake.style.animationDelay = Math.random() * 4 + "s";
 
-    document.body.appendChild(snowflake);
-  }
-</script>
+      document.body.appendChild(snowflake);
+    }
 
+    // 📌 Klick-Logik für Hotspots
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".hotspot").forEach(hotspot => {
+        hotspot.addEventListener("click", e => {
+          e.preventDefault();
+          const element = hotspot.dataset.element;
+          if (element) {
+            const url = "https://de.wikipedia.org/wiki/" + encodeURIComponent(element);
+            window.open(url, "_blank");
+          }
+        });
+      });
+    });
+  </script>
 
   <div class="wrap">
     <div class="headline">
@@ -160,124 +177,100 @@
       <div class="subline">Finde uns!</div>
     </div>
 
-    <!-- Container: ersetzt "image.jpg" durch deinen Bilddateinamen falls nötig -->
     <div class="image-container" aria-label="Chemistree ASG 2025">
       <img src="image.jpg" alt="Chemistree ASG 2025" />
 
-      <!-- Hotspots: left/top/width/height in Prozent (relativ zur Bildbreite und -höhe) -->
-      <!-- Format: data-label zeigt die Ziffer, die beim Hover erscheinen soll -->
-      <!-- Diese Koordinaten wurden automatisch bestimmt (18 Flächen). -->
-
-      <!-- Label 2 -->
-      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="2"
-         style="left:70.000%; top:0.352%; width:14.375%; height:9.499%;">
-        <span class="tooltip">Y.Ok (nicht mehr am ASG)</span>
-      </a>
-
-      <!-- Label 1 -->
-      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="1"
+      <!-- Hotspots mit Elementen -->
+      <a class="hotspot" href="#" aria-label="1" data-element="Silicium"
          style="left:11.875%; top:0.528%; width:16.125%; height:10.026%;">
         <span class="tooltip">S.Wendt</span>
       </a>
 
-      <!-- Label 5 -->
-      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="5"
+      <a class="hotspot" href="#" aria-label="2" data-element="Yttrium"
+         style="left:70.000%; top:0.352%; width:14.375%; height:9.499%;">
+        <span class="tooltip">Y.Ok (nicht mehr am ASG)</span>
+      </a>
+
+      <a class="hotspot" href="#" aria-label="5" data-element="Bor"
          style="left:80.625%; top:18.118%; width:13.125%; height:10.026%;">
         <span class="tooltip">H.Bytomski</span>
       </a>
 
-      <!-- Label 3 -->
-      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="3"
+      <a class="hotspot" href="#" aria-label="3" data-element="Wasserstoff"
          style="left:14.000%; top:23.571%; width:15.375%; height:10.202%;">
         <span class="tooltip">F.Hüttinger</span>
       </a>
 
-      <!-- Label 4 -->
-      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="4"
+      <a class="hotspot" href="#" aria-label="4" data-element="Sauerstoff"
          style="left:36.125%; top:25.682%; width:6.500%; height:4.925%;">
         <span class="tooltip">K.Ohlrogge</span>
       </a>
 
-      <!-- Label 8 -->
-      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="8"
+      <a class="hotspot" href="#" aria-label="8" data-element="Schwefel"
          style="left:56.500%; top:31.135%; width:6.625%; height:5.101%;">
         <span class="tooltip">A.Schwabe (nicht mehr am ASG)</span>
       </a>
 
-      <!-- Label 9 -->
-      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="9"
+      <a class="hotspot" href="#" aria-label="9" data-element="Cobalt"
          style="left:74.750%; top:31.750%; width:13.750%; height:9.323%;">
         <span class="tooltip">D.Kostelnik</span>
       </a>
 
-      <!-- Label 7 -->
-      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="7"
+      <a class="hotspot" href="#" aria-label="7" data-element="Kalium"
          style="left:36.250%; top:36.500%; width:7.125%; height:5.629%;">
         <span class="tooltip">S.Kähler-Lormann</span>
       </a>
 
-      <!-- Label 6 -->
-      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="6"
+      <a class="hotspot" href="#" aria-label="6" data-element="Mangan"
          style="left:4.625%; top:38.347%; width:14.750%; height:8.971%;">
         <span class="tooltip">P.Martin</span>
       </a>
 
-      <!-- Label 10 -->
-      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="10"
+      <a class="hotspot" href="#" aria-label="10" data-element="Gallium"
          style="left:70.500%; top:41.953%; width:6.125%; height:5.013%;">
         <span class="tooltip">M.Grassmann (nicht mehr am ASG)</span>
       </a>
 
-      <!-- Label 11 -->
-      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="11"
+      <a class="hotspot" href="#" aria-label="11" data-element="Ruthenium"
          style="left:85.875%; top:46.262%; width:14.125%; height:9.675%;">
         <span class="tooltip">R.Walther</span>
       </a>
 
-      <!-- Label 12 -->
-      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="12"
+            <a class="hotspot" href="#" aria-label="12" data-element="Molybdän"
          style="left:29.750%; top:52.595%; width:7.000%; height:5.365%;">
-        <span class="tooltip">  C.Mohr-Folberth (nicht mehr am ASG)</span>
+        <span class="tooltip">C.Mohr-Folberth (nicht mehr am ASG)</span>
       </a>
 
-      <!-- Label 13 -->
-      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="13"
+      <a class="hotspot" href="#" aria-label="13" data-element="Barium"
          style="left:49.750%; top:58.223%; width:6.875%; height:4.837%;">
         <span class="tooltip">W.Baumüller (nicht mehr am ASG)</span>
       </a>
 
-      <!-- Label 14 -->
-      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="14"
+      <a class="hotspot" href="#" aria-label="14" data-element="Promethium"
          style="left:84.000%; top:58.223%; width:6.500%; height:5.101%;">
         <span class="tooltip">M.Pöhlmann</span>
       </a>
 
-      <!-- Label 17 -->
-      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="17"
+      <a class="hotspot" href="#" aria-label="17" data-element="Radon"
          style="left:84.125%; top:68.690%; width:6.375%; height:5.189%;">
         <span class="tooltip">A.Ricklinkat (nicht mehr am ASG)</span>
       </a>
 
-      <!-- Label 15 -->
-      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="15"
+      <a class="hotspot" href="#" aria-label="15" data-element="Wolfram"
          style="left:2.625%; top:68.865%; width:7.000%; height:5.013%;">
-        <span class="tooltip">  K.Wanka</span>
+        <span class="tooltip">K.Wanka</span>
       </a>
 
-      <!-- Label 16 -->
-      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="16"
+      <a class="hotspot" href="#" aria-label="16" data-element="Tellur"
          style="left:49.750%; top:68.865%; width:7.375%; height:5.365%;">
         <span class="tooltip">C.Triebel</span>
       </a>
 
-      <!-- Label 18 (großes Feld am Bildfuß) -->
-      <a class="hotspot" href="#" tabindex="0" role="button" aria-label="18"
+      <a class="hotspot" href="#" aria-label="18" data-element="Holmium"
          style="left:29.625%; top:92.348%; width:42.000%; height:7.652%;">
         <span class="tooltip">Eine frohe Adventszeit euch allen!</span>
       </a>
-
     </div>
   </div>
 </body>
 </html>
-
