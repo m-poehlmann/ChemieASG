@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Chemistree ASG 2025</title>
+
   <style>
     :root{
       --max-width: 1000px;
@@ -13,27 +14,28 @@
       --tooltip-padding: 6px 8px;
       --transition: 150ms ease;
     }
+
     body{
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
       margin: 20px;
       display: flex;
       justify-content: center;
       background: black;
+      overflow-x: hidden;
     }
-    .wrap{
-      width: 100%;
-      max-width: var(--max-width);
-    }
+
+    .wrap{ width: 100%; max-width: var(--max-width); }
+
     h1{
       text-align: center;
-      font-size: 2.5rem;   /* doppelt so groß */
-      color: gold;         /* goldene Schrift */
+      font-size: 2.5rem;
+      color: gold;
       margin: 0 0 12px 0;
     }
+
     .image-container{
       position: relative;
       width: 100%;
-      /* keep image aspect ratio by letting image define container height */
     }
     .image-container img{
       display: block;
@@ -42,16 +44,13 @@
       user-select: none;
     }
 
-    /* invisible hotspots */
     .hotspot{
       position: absolute;
       cursor: pointer;
-      /* invisible but still receive hover */
       background: transparent;
       transition: box-shadow var(--transition);
     }
 
-    /* Tooltip / layover shown on hover */
     .tooltip {
       position: absolute;
       pointer-events: none;
@@ -71,23 +70,72 @@
       box-shadow: 0 6px 18px rgba(0,0,0,0.35);
     }
 
-    /* show tooltip when parent hotspot is hovered or focused */
-    .hotspot:focus .tooltip,
-    .hotspot:hover .tooltip {
+    .hotspot:hover .tooltip,
+    .hotspot:focus .tooltip {
       opacity: 1;
       transform: translate(-50%, -120%) scale(1);
     }
 
-    /* small visible indicator on focus for accessibility */
-    .hotspot:focus { outline: 2px dashed rgba(0,0,0,0.25); outline-offset: 2px; }
-
-    /* make tooltips adjust on small screens */
     @media (max-width: 420px){
-      .tooltip { font-size: 0.85rem; padding: 5px 6px; }
+      .tooltip { font-size: 1.2rem; }
     }
-  </style>
+
+/* ❄️ Glitzer-Schnee-Effekt */
+.snowflake {
+  position: fixed;
+  top: -10px;
+  color: white;
+  font-size: 1em;
+  pointer-events: none;
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite; /* endlos wiederholen */
+  z-index: 9999; /* ganz nach vorne */
+}
+@keyframes fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0.3;
+  }
+}
+
+</style>
 </head>
+
 <body>
+<script>
+  // Anzahl der Schneeflocken
+  const snowCount = 70;
+
+  for (let i = 0; i < snowCount; i++) {
+    let snowflake = document.createElement("div");
+    snowflake.classList.add("snowflake");
+
+    // verschiedene Glitzerzeichen ❄ ✦ ✧ ❅
+    const sparkle = ["❄", "✦", "✧", "❅"];
+    snowflake.innerHTML = sparkle[Math.floor(Math.random() * sparkle.length)];
+
+    // zufällige Größe
+    snowflake.style.fontSize = (Math.random() * 1.4 + 0.6) + "rem";
+
+    // zufällige horizontale Position
+    snowflake.style.left = Math.random() * 100 + "vw";
+
+    // unterschiedliche Fallgeschwindigkeiten
+    snowflake.style.animationDuration = (Math.random() * 6 + 4) + "s";
+
+    // leicht unterschiedliche Verzögerung
+    snowflake.style.animationDelay = Math.random() * 4 + "s";
+
+    document.body.appendChild(snowflake);
+  }
+</script>
+
+
   <div class="wrap">
     <h1>Wir funkeln und leuchten!</h1>
 
@@ -192,7 +240,7 @@
       <!-- Label 15 -->
       <a class="hotspot" href="#" tabindex="0" role="button" aria-label="15"
          style="left:2.625%; top:68.865%; width:7.000%; height:5.013%;">
-        <span class="tooltip"> K.Wanka</span>
+        <span class="tooltip">K.Wanka</span>
       </a>
 
       <!-- Label 16 -->
@@ -211,5 +259,3 @@
   </div>
 </body>
 </html>
-
-
