@@ -130,46 +130,50 @@
 
 <body>
   <script>
-    // Anzahl der Schneeflocken
-    const snowCount = 100;
+  // ❄️ Schnee-Effekt bleibt unverändert
+  const snowCount = 70;
+  const sparkle = ["❄", "✦", "✧", "❅"];
+  for (let i = 0; i < snowCount; i++) {
+    let snowflake = document.createElement("div");
+    snowflake.classList.add("snowflake");
+    snowflake.innerHTML = sparkle[Math.floor(Math.random() * sparkle.length)];
+    snowflake.style.fontSize = ((Math.random() * 1.4 + 0.6) * 0.7) + "rem";
+    snowflake.style.left = Math.random() * 100 + "vw";
+    snowflake.style.animationDuration = (Math.random() * 6 + 4) + "s";
+    snowflake.style.animationDelay = Math.random() * 4 + "s";
+    document.body.appendChild(snowflake);
+  }
 
-    for (let i = 0; i < snowCount; i++) {
-      let snowflake = document.createElement("div");
-      snowflake.classList.add("snowflake");
+  // 📌 Zwei-Klick-Logik für Hotspots
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".hotspot").forEach(hotspot => {
+      let activated = false;
 
-      // verschiedene Glitzerzeichen ❄ ✦ ✧ ❅
-      const sparkle = ["❄", "✦", "✧", "❅"];
-      snowflake.innerHTML = sparkle[Math.floor(Math.random() * sparkle.length)];
+      hotspot.addEventListener("click", e => {
+        e.preventDefault();
 
-      // zufällige Größe
-      snowflake.style.fontSize = ((Math.random() * 1.4 + 0.6) * 0.7) + "rem";
+        if (!activated) {
+          // erster Klick: Tooltip sichtbar machen
+          hotspot.classList.add("active");
+          activated = true;
 
-      // zufällige horizontale Position
-      snowflake.style.left = Math.random() * 100 + "vw";
-
-      // unterschiedliche Fallgeschwindigkeiten
-      snowflake.style.animationDuration = (Math.random() * 6 + 4) + "s";
-
-      // leicht unterschiedliche Verzögerung
-      snowflake.style.animationDelay = Math.random() * 4 + "s";
-
-      document.body.appendChild(snowflake);
-    }
-
-    // 📌 Klick-Logik für Hotspots
-    document.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll(".hotspot").forEach(hotspot => {
-        hotspot.addEventListener("click", e => {
-          e.preventDefault();
+          // nach einigen Sekunden wieder zurücksetzen
+          setTimeout(() => { activated = false; hotspot.classList.remove("active"); }, 3000);
+        } else {
+          // zweiter Klick: Wikipedia öffnen
           const element = hotspot.dataset.element;
           if (element) {
             const url = "https://de.wikipedia.org/wiki/" + encodeURIComponent(element);
             window.open(url, "_blank");
           }
-        });
+          activated = false;
+          hotspot.classList.remove("active");
+        }
       });
     });
-  </script>
+  });
+</script>
+
 
   <div class="wrap">
     <div class="headline">
