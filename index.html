@@ -98,6 +98,18 @@
       transform: translate(-50%, -120%) scale(1);
     }
 
+.tooltip-right {
+  transform: translate(0%, -110%) scale(0.95);
+  transform-origin: bottom left;
+}
+
+.hotspot:hover .tooltip-right,
+.hotspot:focus .tooltip-right,
+.hotspot.active .tooltip-right {
+  transform: translate(0%, -120%) scale(1);
+}
+
+
     @media (max-width: 420px) {
       .tooltip { font-size: 0.8rem; }
     }
@@ -130,9 +142,9 @@
 
 <body>
   <script>
-  // ❄️ Schnee-Effekt bleibt unverändert
-  const snowCount = 90;
-  const sparkle = ["❄", "✦", "✧", "❅", "❉", "❊", "✺", "✻"];
+  // ❄️ Schnee-Effekt
+  const snowCount = 70;
+  const sparkle = ["❄", "✦", "✧", "❅"];
   for (let i = 0; i < snowCount; i++) {
     let snowflake = document.createElement("div");
     snowflake.classList.add("snowflake");
@@ -144,11 +156,18 @@
     document.body.appendChild(snowflake);
   }
 
-  // 📌 Zwei-Klick-Logik für Hotspots
+  // 📌 Zwei-Klick-Logik + Tooltip-Korrektur für linke Hotspots
   document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".hotspot").forEach(hotspot => {
-      let activated = false;
+      const rect = hotspot.getBoundingClientRect();
+      const tooltip = hotspot.querySelector(".tooltip");
 
+      // Wenn Hotspot sehr weit links liegt → Tooltip nach rechts verschieben
+      if (rect.left < 120) {   // Wert anpassen, je nachdem wie weit rechts du es haben willst
+        tooltip.classList.add("tooltip-right");
+      }
+
+      let activated = false;
       hotspot.addEventListener("click", e => {
         e.preventDefault();
 
@@ -157,8 +176,11 @@
           hotspot.classList.add("active");
           activated = true;
 
-          // nach einigen Sekunden wieder zurücksetzen
-          setTimeout(() => { activated = false; hotspot.classList.remove("active"); }, 3000);
+          // nach einigen Sekunden zurücksetzen
+          setTimeout(() => {
+            activated = false;
+            hotspot.classList.remove("active");
+          }, 3000);
         } else {
           // zweiter Klick: Wikipedia öffnen
           const element = hotspot.dataset.element;
